@@ -22,20 +22,17 @@ monociclo uut (
     .fun7()
 );
 
-     // --- Generación de reloj ---
     initial begin
         clk = 0;
         forever #5 clk = ~clk; // Periodo de 10 ns (50 MHz)
     end
 
-    // --- Secuencia de reset ---
     initial begin
         reset = 1;
         #10; 
         reset = 0;
     end
 
-    // --- Monitorización ---
     initial begin
         $monitor("Time = %t ns | PC = %h | Instruction = %h", 
                  $time, pc, instruction);

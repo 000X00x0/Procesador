@@ -16,7 +16,6 @@ module monociclo(
     wire [31:0] next_pc;
     wire [31:0] pc_plus_4 = pc + 4;
 
-    // Extracción de campos de instrucción
     assign opCode = instruction[6:0];
     assign fun3 = instruction[14:12];
     assign fun7 = instruction[31:25];
@@ -24,7 +23,6 @@ module monociclo(
     assign read_reg2 = instruction[24:20];
     assign write_reg = instruction[11:7];
 
-    // Instancias de módulos
     program_counter pc_reg (
         .clk(clk),
         .reset(reset),
@@ -49,11 +47,11 @@ module monociclo(
         .read_reg1(read_reg1),
         .read_reg2(read_reg2),
         .write_reg(write_reg),
-        .write_data(pc_plus_4), // Ejemplo: guardamos PC+4
+        .write_data(pc_plus_4),
         .reg_write(reg_write),
         .read_data1(read_data1),
         .read_data2(read_data2)
     );
 
-    assign next_pc = pc_plus_4; // Flujo secuencial simple
+    assign next_pc = pc_plus_4;
 endmodule
