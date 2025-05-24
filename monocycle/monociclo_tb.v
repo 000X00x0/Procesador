@@ -9,8 +9,18 @@ module monociclo_tb;
     wire [31:0] rs1_data;
     wire [31:0] rs2_data;
     wire [31:0] datos_alRegistro;
+    wire [1:0] alu_src_sel;
+    wire [3:0] alu_control;
+    wire [31:0] operand2;
+    wire [31:0] alu_op1;
+    wire reg_write;
+    wire [1:0] reg_src;
+	 wire zero;
+    wire mem_write;
+    wire [2:0] mem_ctrl;
+    wire branch_ctrl;
+    wire [4:0] br_op;
 
-    // Instancia del DUT
     monociclo uut (
         .clk(clk),
         .reset(reset),
@@ -19,26 +29,41 @@ module monociclo_tb;
         .result(result),
         .rs1_data(rs1_data),
         .rs2_data(rs2_data),
-        .datos_alRegistro(datos_alRegistro)
+        .datos_alRegistro(datos_alRegistro),
+        .alu_src_sel(alu_src_sel),
+        .alu_control(alu_control),
+        .reg_write(reg_write),
+        .reg_src(reg_src),
+        .alu_op1(alu_op1),
+        .operand2(operand2),
+        .zero(zero),
+        .mem_write(mem_write),
+        .mem_ctrl(mem_ctrl),
+        .branch_ctrl(branch_ctrl),
+        .br_op(br_op)
     );
 
-    // Generador de reloj
+    initial clk = 0;
     always #10 clk = ~clk;
 
     initial begin
-        $display("Time | PC        | Instr     | rs1_data  | rs2_data  | Result    | WB");
-        $monitor("%4dns | %h | %h | %h | %h | %h | %h",
-                 $time, pc, instruction, rs1_data, rs2_data, result, datos_alRegistro);
-
-        // Inicialización
-        clk = 0;
         reset = 1;
-        #25;
-        reset = 0;
+        #5 reset = 0;
+            $display("Time | PC    | Instr   | rs1_data | rs2_data | alu_op1  | operand2  | ALU_res  | zero | RegWrite | MemWrite | mem_ctrl | alu_src | alu_op | reg_src | branch | br_op");
+        $display("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    end
 
-        // Simular durante 20 ciclos de reloj
+    always @(posedge clk) begin
+    $display("%5t | %h | %h | %h | %h | %h | %h | %h | %b | %b         | %b        | %b        | %b      | %b     | %b      | %b     | %b", 
+        $time, pc, instruction, rs1_data, rs2_data, alu_op1, operand2,
+        result, zero,
+        reg_write, mem_write, mem_ctrl,
+        alu_src_sel, alu_control, reg_src,
+        branch_ctrl, br_op);
+    end
+
+    initial begin
         repeat (20) @(posedge clk);
-
         $finish;
     end
 
