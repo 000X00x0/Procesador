@@ -2,7 +2,6 @@ module control_unit (
     input [6:0] opcode,
     input [2:0] funct3,
     input [6:0] funct7,
-
     output reg reg_write,
     output reg [1:0] alu_src,
     output reg [3:0] alu_op,
@@ -15,7 +14,6 @@ module control_unit (
 );
 
     always @(*) begin
-        // Valores por defecto
         reg_write = 0;
         alu_src = 2'b00;
         alu_op = 4'b0000;
@@ -30,7 +28,7 @@ module control_unit (
             7'b0110011: begin // R-type
                 reg_write = 1;
                 alu_src = 2'b00;
-                alu_op = {funct7[5], funct3}; // ALU control directo
+                alu_op = {funct7[5], funct3};
             end
 
             7'b0010011: begin // I-type (ADDI, etc.)
@@ -61,7 +59,7 @@ module control_unit (
                 alu_op = 4'b1000;
                 branch = 1;
                 imm_src = 3'b101;
-                br_op = {2'b01, funct3}; // Código de branch
+                br_op = {2'b01, funct3};
             end
 
             7'b1101111: begin // JAL

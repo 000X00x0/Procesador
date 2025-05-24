@@ -7,6 +7,13 @@ module data_memory (
     output reg [31:0] read_data
 );
     reg [7:0] memory[0:1023];
+	 
+    integer i;
+    // Inicializa toda la memoria a 0 al inicio de la simulación
+    initial begin
+        for (i = 0; i < 1024; i = i + 1)
+            memory[i] = 8'h00;
+    end
 
     always @(posedge clk) begin
         if (mem_write) begin
