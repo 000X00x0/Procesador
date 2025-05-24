@@ -12,7 +12,7 @@ module branch_unit (
             5'b01101: branch = ($signed(rs1_data) >= $signed(rs2_data));
             5'b01110: branch = (rs1_data < rs2_data);
             5'b01111: branch = (rs1_data >= rs2_data);
-            5'b11111: branch = 1; // JAL
+            5'b11111: branch = 1;
             default: branch = 0;
         endcase
     end

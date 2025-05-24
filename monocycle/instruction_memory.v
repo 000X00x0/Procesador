@@ -14,7 +14,6 @@ module instruction_memory (
         end
     end
 
-    // Protección contra acceso fuera de rango
     wire [31:0] safe_addr = (address + 3 < 1024) ? address : 0;
 
     assign instr_temp = {mem[safe_addr + 3], mem[safe_addr + 2], mem[safe_addr + 1], mem[safe_addr]};

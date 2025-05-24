@@ -1,6 +1,6 @@
 module register_unit (
     input  wire        clk,
-    input  wire        reset,       // NUEVO
+    input  wire        reset,     
     input  wire        reg_write,
     input  wire [4:0]  rs1,
     input  wire [4:0]  rs2,
@@ -14,7 +14,6 @@ module register_unit (
 
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            // Inicializa todos los registros a 0 en reset
             for (i = 0; i < 32; i = i + 1)
                 regs[i] <= 32'b0;
         end else if (reg_write && rd != 0) begin

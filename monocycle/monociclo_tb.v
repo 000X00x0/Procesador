@@ -9,8 +9,6 @@ module monociclo_tb;
     wire [31:0] rs1_data;
     wire [31:0] rs2_data;
     wire [31:0] datos_alRegistro;
-
-    // Señales internas de depuración
     wire [1:0] alu_src_sel;
     wire [3:0] alu_control;
     wire [31:0] operand2;
@@ -23,8 +21,6 @@ module monociclo_tb;
     wire branch_ctrl;
     wire [4:0] br_op;
 
-    // Instancia del DUT con acceso a señales internas
-        // Instancia del DUT con acceso a señales internas
     monociclo uut (
         .clk(clk),
         .reset(reset),
@@ -34,8 +30,6 @@ module monociclo_tb;
         .rs1_data(rs1_data),
         .rs2_data(rs2_data),
         .datos_alRegistro(datos_alRegistro),
-
-        // señales internas exportadas
         .alu_src_sel(alu_src_sel),
         .alu_control(alu_control),
         .reg_write(reg_write),
@@ -49,11 +43,9 @@ module monociclo_tb;
         .br_op(br_op)
     );
 
-    // Generador de reloj
     initial clk = 0;
     always #10 clk = ~clk;
 
-    // Inicialización
     initial begin
         reset = 1;
         #5 reset = 0;
@@ -61,7 +53,6 @@ module monociclo_tb;
         $display("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
     end
 
-    // Monitoreo por ciclo
     always @(posedge clk) begin
     $display("%5t | %h | %h | %h | %h | %h | %h | %h | %b | %b         | %b        | %b        | %b      | %b     | %b      | %b     | %b", 
         $time, pc, instruction, rs1_data, rs2_data, alu_op1, operand2,
@@ -71,7 +62,6 @@ module monociclo_tb;
         branch_ctrl, br_op);
     end
 
-    // Fin de simulación
     initial begin
         repeat (20) @(posedge clk);
         $finish;
