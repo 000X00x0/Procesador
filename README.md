@@ -98,7 +98,6 @@ $display("%5t | %h | %h | %h | %h | %h | %h | %h | %b | %b | %b | %b | %b | %b |
 ## ⚙️ Características del Diseño
 
 - ✅ Memorias de instrucciones y datos separadas
-- ✅ Todas las etapas se completan en un solo ciclo
 - ✅ Señales internas expuestas para facilitar la verificación
 - ✅ Compatible con los tipos de instrucciones básicos de RISC-V
 
