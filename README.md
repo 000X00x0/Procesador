@@ -97,7 +97,7 @@ $display("%5t | %h | %h | %h | %h | %h | %h | %h | %b | %b | %b | %b | %b | %b |
 
 ## ⚙️ Características del Diseño
 
-- ✅ Arquitectura Harvard: memorias de instrucciones y datos separadas
+- ✅ Memorias de instrucciones y datos separadas
 - ✅ Todas las etapas se completan en un solo ciclo
 - ✅ Señales internas expuestas para facilitar la verificación
 - ✅ Compatible con los tipos de instrucciones básicos de RISC-V
@@ -112,14 +112,6 @@ $display("%5t | %h | %h | %h | %h | %h | %h | %h | %b | %b | %b | %b | %b | %b |
 
 ---
 
-## 📘 Notas
 
-Este procesador está diseñado con fines **educativos** y de **verificación**. El diseño de ciclo único facilita la comprensión del pipeline, pero no es óptimo para aplicaciones de alto rendimiento.
-
----
-
-## 👨‍💻 Autor
-
-Desarrollado por Israel  
 Repositorio creado para prácticas de arquitectura de computadores y simulación digital en FPGA/ModelSim.
 
